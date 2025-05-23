@@ -19,13 +19,94 @@ public class ArchiveService : IArchiveService
         new JsonSerializerOptions{ PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
     private readonly JsonSerializerOptions _exceptionIndentedSerializerOptions =
         new JsonSerializerOptions { WriteIndented = true };
+    
+    private readonly string[] _fileExtensionsToConvert =
+    [
+        "PDF",
+        "JPG",
+        "EML",
+        "JPEG",
+        "XLSX",
+        "XLS",
+        "RTF",
+        "MSG",
+        "PPT",
+        "PPTX",
+        "DOCX",
+        "DOC",
+        "HTML",
+        "HTM",
+        "TIFF"
+    ];
+
+    private readonly string[] _validFileExtensions =
+    [
+        "UF",
+        "DOC",
+        "XLS",
+        "PPT",
+        "MPP",
+        "RTF",
+        "TIF",
+        "PDF",
+        "TXT",
+        "HTM",
+        "JPG",
+        "MSG",
+        "DWF",
+        "ZIP",
+        "DWG",
+        "ODT",
+        "ODS",
+        "ODG",
+        "XML",
+        "DOCX",
+        "EML",
+        "MHT",
+        "XLSX",
+        "PPTX",
+        "GIF",
+        "ONE",
+        "DOCM",
+        "SOI",
+        "MPEG-2",
+        "MP3",
+        "XLSB",
+        "PPTM",
+        "VSD",
+        "VSDX",
+        "XLSM",
+        "SOS",
+        "HTML",
+        "PNG",
+        "MOV",
+        "PPSX",
+        "WMV",
+        "XPS",
+        "JPEG",
+        "TIFF",
+        "MP4",
+        "WAV",
+        "PUB",
+        "BMP",
+        "IFC",
+        "KOF",
+        "VGT",
+        "GSI",
+        "GML",
+        "cfb",
+        "26",
+        "2",
+        "hiec",
+        "md"
+    ];
 
     public ArchiveService(IConfiguration config, IAuthenticationService authService, ILogger<ArchiveService> logger)
     {
         _authService = authService;
         _logger = logger;
         
-        var scopes = config["ARCHIVE_SCOPE"] ?? throw new NullReferenceException("ARCHIVE_SCOPE cannot be null");
+        var scopes = config["ARCHIVE_SCOPE"] ?? throw new NullReferenceException();
 
         if (string.IsNullOrEmpty(scopes))
         {
@@ -41,7 +122,7 @@ public class ArchiveService : IArchiveService
         
         _archiveClient = new HttpClient
         {
-            BaseAddress = new Uri(config["ARCHIVE_BASE_URL"] ?? throw new NullReferenceException("ARCHIVE_BASE_URL cannot be null"))
+            BaseAddress = new Uri(config["ARCHIVE_BASE_URL"] ?? throw new NullReferenceException())
         };
     }
     
@@ -73,7 +154,6 @@ public class ArchiveService : IArchiveService
         var errorMessage = JsonSerializer.Deserialize<ArchiveErrorMessage>(resultContent, _errorMessageSerializerOptions) ?? throw new InvalidOperationException("Failed to deserialize error message");
         _logger.LogError("Archive {Route} error with Payload {@Payload}: {Message} : StatusCode: {StatusCode}. Data: {@Data}", route, payload, errorMessage.Message, result.StatusCode, errorMessage.Data);
         throw new InvalidOperationException(errorMessage.Message);
-
     }
 
     public async Task<JsonNode> CreateCase(object parameter)
@@ -130,6 +210,41 @@ public class ArchiveService : IArchiveService
         
         _logger.LogError("Failed to get cases with Parameter {@Parameter}", parameter);
         throw new InvalidOperationException($"Failed to get cases with Parameter {JsonSerializer.Serialize(parameter, _exceptionIndentedSerializerOptions)}");
+    }
+    
+    public async Task<JsonArray> GetDocuments(object parameter)
+    {
+        var payload = new ArchivePayload
+        {
+            service = "DocumentService",
+            method = "GetDocuments",
+            parameter = parameter
+        };
+
+        if (await Archive(payload) is JsonArray result)
+        {
+            return result;
+        }
+        
+        _logger.LogError("Failed to get documents with Parameter {@Parameter}", parameter);
+        throw new InvalidOperationException($"Failed to get documents with Parameter {JsonSerializer.Serialize(parameter, _exceptionIndentedSerializerOptions)}");
+    }
+    
+    public (string, string) GetFileExtension(string input)
+    {
+        var extension = Path.GetExtension(input);
+        if (string.IsNullOrEmpty(extension))
+        {
+            return ("UF", "A");
+        }
+
+        extension = extension.Replace(".", "");
+
+        extension = _validFileExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase) ? extension : "UF";
+
+        bool convert = _fileExtensionsToConvert.Contains(extension, StringComparer.OrdinalIgnoreCase);
+        
+        return (extension, convert ? "P" : "A");
     }
 
     public async Task<JsonArray> GetProjects(object parameter)

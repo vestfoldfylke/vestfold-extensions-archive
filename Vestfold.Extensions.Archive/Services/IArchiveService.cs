@@ -10,10 +10,10 @@ public interface IArchiveService
     Task<JsonNode> CreateCase(object parameter);
     Task<JsonNode> CreateDocument(object parameter);
     Task<JsonArray> GetCases(object parameter);
+    Task<JsonArray> GetDocuments(object parameter);
+    (string, string) GetFileExtension(string input);
     Task<JsonArray> GetProjects(object parameter);
     Task<JsonNode> SignOff(object parameter);
-
     Task<JsonNode> SyncEnterprise(string organizationNr);
-
     Task<JsonNode> SyncPrivatePerson(object privatePerson);
 }
