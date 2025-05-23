@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_PATH: VFK.Extensions.Archive/VFK.Extensions.Archive.csproj
-  PROJECT_RELEASE_PATH: VFK.Extensions.Archive/bin/Release
+  PROJECT_PATH: Vestfold.Extensions.Archive/Vestfold.Extensions.Archive.csproj
+  PROJECT_RELEASE_PATH: Vestfold.Extensions.Archive/bin/Release
   NUGET_SOURCE: https://api.nuget.org/v3/index.json
 
 jobs:
@@ -29,4 +29,4 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release
 
     - name: Publish NuGet package to NuGet.org
-      run: dotnet nuget push ${{ env.PROJECT_RELEASE_PATH }}/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }}  --source ${{ env.NUGET_SOURCE }}
+      run: dotnet nuget push ${{ env.PROJECT_RELEASE_PATH }}/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}

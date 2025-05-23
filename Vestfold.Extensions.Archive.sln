@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VFK.Extensions.Archive", "VFK.Extensions.Archive\VFK.Extensions.Archive.csproj", "{E17FE1A8-E378-4192-B0CC-56115672393E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vestfold.Extensions.Archive", "Vestfold.Extensions.Archive\Vestfold.Extensions.Archive.csproj", "{E17FE1A8-E378-4192-B0CC-56115672393E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

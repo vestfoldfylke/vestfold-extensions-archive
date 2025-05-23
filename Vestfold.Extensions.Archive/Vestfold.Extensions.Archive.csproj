@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-        <PackageId>VFK.Extensions.Archive</PackageId>
+        <PackageId>Vestfold.Extensions.Archive</PackageId>
         <Version>1.0.0</Version>
         <Authors>Rune Moskvil Lyngås</Authors>
         <Company>Vestfold fylkeskommune</Company>
@@ -18,7 +18,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="VFK.Extensions.Authentication" Version="1.0.1" />
+        <PackageReference Include="Vestfold.Extensions.Authentication" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,7 +37,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <RepositoryUrl>https://github.com/vestfoldfylke/vfk-extensions-archive</RepositoryUrl>
+        <RepositoryUrl>https://github.com/vestfoldfylke/vestfold-extensions-archive</RepositoryUrl>
     </PropertyGroup>
 
 </Project>

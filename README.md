@@ -1,7 +1,7 @@
-![NuGet Version](https://img.shields.io/nuget/v/VFK.Extensions.Archive.svg)
-![NuGet Downloads](https://img.shields.io/nuget/dt/VFK.Extensions.Archive.svg)
+![NuGet Version](https://img.shields.io/nuget/v/Vestfold.Extensions.Archive.svg)
+![NuGet Downloads](https://img.shields.io/nuget/dt/Vestfold.Extensions.Archive.svg)
 
-# VFK.Extensions.Archive
+# Vestfold.Extensions.Archive
 
 Contains builder extensions to extend a dotnet core application with archive functionality.
 
@@ -37,7 +37,7 @@ Create an `appsettings.json` file:
 ```csharp
 var builder = FunctionsApplication.CreateBuilder(args);
 builder.ConfigureFunctionsWebApplication();
-builder.Services.AddVfkArchive();
+builder.Services.AddVestfoldArchive();
 builder.Build().Run();
 ```
 
@@ -47,7 +47,7 @@ builder.Build().Run();
 public static async Task Main(string[] args)
 {
     await Host.CreateDefaultBuilder(args)
-        .ConfigureServices(services => services.AddVfkArchive())
+        .ConfigureServices(services => services.AddVestfoldArchive())
         .Build()
         .RunAsync();
 
@@ -59,7 +59,7 @@ public static async Task Main(string[] args)
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddVfkArchive();
+builder.Services.AddVestfoldArchive();
 
 var app = builder.Build();
 ```

@@ -1,7 +1,7 @@
 using System.Text.Json.Nodes;
-using VFK.Extensions.Archive.Contracts;
+using Vestfold.Extensions.Archive.Contracts;
 
-namespace VFK.Extensions.Archive.Services;
+namespace Vestfold.Extensions.Archive.Services;
 
 public interface IArchiveService
 {

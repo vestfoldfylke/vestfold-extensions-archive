@@ -2,10 +2,10 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using VFK.Extensions.Archive.Contracts;
-using VFK.Extensions.Authentication.Services;
+using Vestfold.Extensions.Archive.Contracts;
+using Vestfold.Extensions.Authentication.Services;
 
-namespace VFK.Extensions.Archive.Services;
+namespace Vestfold.Extensions.Archive.Services;
 
 public class ArchiveService : IArchiveService
 {

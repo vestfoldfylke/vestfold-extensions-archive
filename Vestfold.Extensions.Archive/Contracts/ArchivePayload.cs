@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace VFK.Extensions.Archive.Contracts;
+namespace Vestfold.Extensions.Archive.Contracts;
 
 // NOTE: P360 SIF requires service and method to be camelCase
 //       and parameter can be a mix of PascalCase and camelCase,
