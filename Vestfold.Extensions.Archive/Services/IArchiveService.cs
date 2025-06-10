@@ -16,4 +16,5 @@ public interface IArchiveService
     Task<JsonNode> SignOff(object parameter);
     Task<JsonNode> SyncEnterprise(string organizationNr);
     Task<JsonNode> SyncPrivatePerson(object privatePerson);
+    Task<JsonNode> UpdateCase(object parameter);
 }

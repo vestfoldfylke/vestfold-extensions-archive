@@ -313,6 +313,25 @@ public class ArchiveService : IArchiveService
         throw new InvalidOperationException($"Failed to sync private person with Payload {JsonSerializer.Serialize(privatePerson, _exceptionIndentedSerializerOptions)}");
     }
 
+    public async Task<JsonNode> UpdateCase(object parameter)
+    {
+        var payload = new ArchivePayload
+        {
+            service = "CaseService",
+            method = "UpdateCase",
+            parameter = parameter
+        };
+
+        var result = await Archive(payload);
+        if (result is not null)
+        {
+            return result;
+        }
+        
+        _logger.LogError("Failed to update case with Parameter {@Parameter}", parameter);
+        throw new InvalidOperationException($"Failed to update case with Parameter {JsonSerializer.Serialize(parameter, _exceptionIndentedSerializerOptions)}");
+    }
+
     private async Task<(HttpResponseMessage, string)> CallArchive(object payload, string route = "archive")
     {
         var token = await _authService.GetAccessToken(_scopes);
