@@ -7,7 +7,7 @@
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
         <PackageId>Vestfold.Extensions.Archive</PackageId>
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <Authors>Rune Moskvil Lyngås</Authors>
         <Company>Vestfold fylkeskommune</Company>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -18,7 +18,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Vestfold.Extensions.Authentication" Version="1.0.2" />
+        <PackageReference Include="Vestfold.Extensions.Authentication" Version="1.0.3" />
     </ItemGroup>
 
     <ItemGroup>
