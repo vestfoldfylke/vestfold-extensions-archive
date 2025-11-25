@@ -32,11 +32,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build and pack project # <GeneratePackageOnBuild>true</GeneratePackageOnBuild> must be added to .csproj
-      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release
-
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test
+
+    - name: Build and pack project # <GeneratePackageOnBuild>true</GeneratePackageOnBuild> must be added to .csproj
+      run: dotnet build --configuration Release
 
     # Get a short-lived NuGet API key (1 hour)
     - name: NuGet login (OIDC → temp API key)
