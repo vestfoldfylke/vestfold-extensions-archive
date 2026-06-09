@@ -15,10 +15,12 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
         <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Vestfold.Extensions.Authentication" Version="1.0.3" />
+        <PackageReference Include="Vestfold.Extensions.Authentication" Version="1.0.13" />
     </ItemGroup>
 
     <ItemGroup>
